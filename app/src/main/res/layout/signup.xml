@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fitsSystemWindows="true"
+    android:theme="@style/AppTheme">
+
+
+    <TextView
+        android:id="@+id/signupHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:text="Sign-Up"
+        android:textSize="50dp" />
+
+
+    <TextView
+        android:id="@+id/usernameText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/signupHeader"
+        android:layout_marginTop="50dp"
+        android:textSize="20dp"
+        android:text="Username:"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/username"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/usernameText"
+        android:layout_marginTop="20dp"
+        android:gravity="left" />
+
+    <TextView
+        android:id="@+id/passwordText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/username"
+        android:layout_marginTop="30dp"
+        android:textSize="20dp"
+        android:text="Password:"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/passwordText"
+        android:layout_marginTop="20dp"
+        android:gravity="left" />
+
+    <TextView
+        android:id="@+id/confPasswordText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/password"
+        android:layout_marginTop="30dp"
+        android:textSize="20dp"
+        android:text="Confirm Password:"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/confPassword"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/confPasswordText"
+        android:layout_marginTop="10dp"
+        android:gravity="left" />
+
+    <CheckBox
+        android:id="@+id/legalAge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/confPassword"
+        android:text="I certify that I am at least 21 years old"
+        android:layout_marginTop="50dp"
+        android:textSize="18dp"/>
+
+    <CheckBox
+        android:id="@+id/termsAndCond"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/legalAge"
+        android:text="I agree to the Terms and Conditions"
+        android:textSize="18dp"/>
+
+    <Button
+        android:id="@+id/submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/termsAndCond"
+        android:layout_centerHorizontal="true"
+        android:text="Submit"
+        android:layout_marginTop="20dp"/>
+    <ImageView
+        android:id="@+id/banner"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_below="@id/submit"
+        android:src="@drawable/banner"
+        />
+
+
+
+
+</RelativeLayout>
+

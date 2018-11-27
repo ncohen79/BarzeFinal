@@ -1,0 +1,26 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:background">@color/background</item>
+        <item name="actionBarItemBackground">@color/header</item>
+        <item name="android:textColor">@color/header</item>
+        <item name="android:textColorHint">@color/header</item>
+        <item name="android:editTextColor">@color/header</item>
+        <item name="android:fontFamily">@font/coustard</item>
+        <item name="android:checkMark">@color/header</item>
+        <item name="android:textCheckMark">@color/header</item>
+        <item name="android:textColorSecondary">@color/header</item>
+        <item name="android:colorAccent">@color/header</item>
+        <item name="android:textColorPrimaryDisableOnly">@color/header</item>
+
+    </style>
+    
+
+
+
+</resources>
