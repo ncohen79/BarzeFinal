@@ -53,16 +53,42 @@ public class Login extends Activity {
                 final EditText password = findViewById(R.id.password);
                 password.getText();
 
-                //Toast.makeText(getApplicationContext(),"username is: "+ username.getText().toString(),Toast.LENGTH_LONG).show();
-
                 Task<String> result = db.ownsBar(username.getText().toString());
                 result.addOnCompleteListener(new OnCompleteListener<String>() {
                     @Override
                     public void onComplete(@NonNull Task<String> task) {
-                       // Log.i(TAG, task.getResult().toString());
-                        Toast.makeText(getApplicationContext(), "is a user " + task.toString(), Toast.LENGTH_LONG).show();
+                       // user is logging in
                         if(task.getResult() == null){
                             Task<Boolean> signIn = db.signIn(username.getText().toString(), password.getText().toString());
+                            signIn.addOnCompleteListener(new OnCompleteListener<Boolean>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Boolean> taskSignIn) {
+                                    if(taskSignIn.getResult()){
+                                        Intent mapView = new Intent(Login.this,BarSelectActivity.class);
+                                        startActivity(mapView);
+                                    }else{
+                                        username.setText("");
+                                        password.setText("");
+                                        Toast.makeText(getApplicationContext(), "Username/Password are incorrect", Toast.LENGTH_LONG).show();
+                                    }
+                                }
+                            });
+
+                        }else{//bar is loggin in
+                            Task<Boolean> signIn = db.signIn(username.getText().toString(), password.getText().toString());
+                            signIn.addOnCompleteListener(new OnCompleteListener<Boolean>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Boolean> taskSignIn) {
+                                    if(taskSignIn.getResult()){
+                                        Intent barPage = new Intent(Login.this,BarUserPage.class);
+                                        startActivity(barPage);
+                                    }else{
+                                        username.setText("");
+                                        password.setText("");
+                                        Toast.makeText(getApplicationContext(), "Username/Password are incorrect", Toast.LENGTH_LONG).show();
+                                    }
+                                }
+                            });
 
                         }
                     }
@@ -73,8 +99,7 @@ public class Login extends Activity {
                     //show justines code
                 //else if(userLogin(username,password) == true){
                 //Intent listView = new Intent(Login.this,ViewListActivity.class);
-                Intent mapView = new Intent(Login.this,BarSelectActivity.class);
-                startActivity(mapView);
+
                 //}
                 //else
                     //clear boxes and show toast message incorrect login

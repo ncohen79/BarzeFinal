@@ -35,6 +35,9 @@ public class Database {
                             ds.getValue(User.class).getPassword().equals(password)) {
                         tcs.setResult(true);
                         return;
+                    }else{
+                        tcs.setResult(false);
+                        return;
                     }
                 }
             }
@@ -167,7 +170,7 @@ public class Database {
 
     public Task<String> ownsBar(final String username) {
         final TaskCompletionSource<String> tcs = new TaskCompletionSource<>();
-        mDatabaseReference.child("Bars").addValueEventListener(new ValueEventListener() {
+        mDatabaseReference.child("Users").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {

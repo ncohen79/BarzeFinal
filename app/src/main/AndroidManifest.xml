@@ -39,6 +39,9 @@
             android:theme="@style/Theme.AppCompat.Light"
             android:label="@string/map_list">
         </activity>
+        <activity
+            android:name="barzeCombo.BarUserPage" android:theme="@style/Theme.AppCompat.Light">
+        </activity>
 
 
         <meta-data
