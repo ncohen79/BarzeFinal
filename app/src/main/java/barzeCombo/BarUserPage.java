@@ -1,7 +1,9 @@
 package barzeCombo;
 
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -13,12 +15,19 @@ import android.widget.Button;
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 
 public class BarUserPage extends AppCompatActivity {
     private Button button;
     private String mText;
     private ListView currentDealsList;
     final Context context = this;
+    final Database db = new Database();
+    String currBar = "";
 
 
     @Override
@@ -26,9 +35,10 @@ public class BarUserPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.baruser);
 
+
         button = (Button) findViewById(R.id.buttonShowCustomDialog);
         currentDealsList = (ListView) findViewById(R.id.currentDealsList);
-        //ListView to be populated with deals from database
+
 
         button.setOnClickListener(new OnClickListener() {
 

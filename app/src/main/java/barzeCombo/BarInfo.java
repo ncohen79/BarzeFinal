@@ -1,6 +1,7 @@
 package barzeCombo;
 
 import android.content.DialogInterface;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,6 +11,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Button;
 import android.view.View.OnClickListener;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 
 public class BarInfo extends AppCompatActivity {
     @Override
@@ -18,20 +23,46 @@ public class BarInfo extends AppCompatActivity {
         setContentView(R.layout.barinformation);
         TextView BarName = findViewById(R.id.BarName);
         TextView OpenClosed = findViewById(R.id.OpenClosed);
-        TextView Minutes = findViewById(R.id.editText2);
+        final TextView Minutes = findViewById(R.id.editText2);
         Button ConfirmW = findViewById(R.id.ConfirmW);
         Button ConfirmH = findViewById(R.id.ConfirmH);
         Button ConfirmL = findViewById(R.id.ConfirmL);
         Button ChangeW = findViewById(R.id.ChangeW);
         Button ChangeH = findViewById(R.id.ChangeH);
         Button ChangeL = findViewById(R.id.ChangeL);
-        EditText low = findViewById(R.id.LowValue);
-        EditText high = findViewById(R.id.HighNumber);
-        EditText deals = findViewById(R.id.editText4);
+        final EditText low = findViewById(R.id.LowValue);
+        final EditText high = findViewById(R.id.HighNumber);
+        final Database db = new Database();
 
         //BarName needs to be from database/from when user clisks the bar from listview
         //deals of the day(editText4) needs to be updated from the bar edit page
         //if the bar is open or closed needs to come from bar edit page as well
+        String currBar = getIntent().getStringExtra("barClicked");
+        //ListView to be populated with deals from database
+        Task<Integer> wait = db.getWaitTime(currBar);
+        wait.addOnCompleteListener(new OnCompleteListener<Integer>() {
+            @Override
+            public void onComplete(@NonNull Task<Integer> task) {
+                Toast.makeText(getApplicationContext(), "wait time: "+ task.getResult().toString(), Toast.LENGTH_LONG).show();
+                Minutes.setText(task.getResult().toString());
+            }
+        });
+
+        Task<Integer> lowC = db.getLowCover(currBar);
+        lowC.addOnCompleteListener(new OnCompleteListener<Integer>() {
+            @Override
+            public void onComplete(@NonNull Task<Integer> task) {
+                low.setText(task.getResult().toString());
+            }
+        });
+
+        Task<Integer> highC = db.getHighCover(currBar);
+        highC.addOnCompleteListener(new OnCompleteListener<Integer>() {
+            @Override
+            public void onComplete(@NonNull Task<Integer> task) {
+                high.setText(task.getResult().toString());
+            }
+        });
 
         ConfirmH.setOnClickListener(new OnClickListener() {
             @Override

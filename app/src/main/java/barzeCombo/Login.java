@@ -49,9 +49,9 @@ public class Login extends Activity {
             @Override
             public void onClick(View v) {
                 final EditText username = findViewById(R.id.username);
-                username.getText();
+                //username.getText();
                 final EditText password = findViewById(R.id.password);
-                password.getText();
+                //password.getText();
 
                 Task<String> result = db.ownsBar(username.getText().toString());
                 result.addOnCompleteListener(new OnCompleteListener<String>() {
@@ -75,11 +75,13 @@ public class Login extends Activity {
                             });
 
                         }else{//bar is loggin in
+                            Toast.makeText(getApplicationContext(), "Bar user", Toast.LENGTH_LONG).show();
                             Task<Boolean> signIn = db.signIn(username.getText().toString(), password.getText().toString());
                             signIn.addOnCompleteListener(new OnCompleteListener<Boolean>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Boolean> taskSignIn) {
                                     if(taskSignIn.getResult()){
+                                        Toast.makeText(getApplicationContext(), "loggin in bar account", Toast.LENGTH_LONG).show();
                                         Intent barPage = new Intent(Login.this,BarUserPage.class);
                                         startActivity(barPage);
                                     }else{

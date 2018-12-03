@@ -154,6 +154,7 @@ public class BarSelectActivity extends FragmentActivity implements RetainedFragm
 
         //TODO: Grab Marker or whatever to begin detail view of bar
         Intent startBarInfo = new Intent(BarSelectActivity.this,BarInfo.class);
+        startBarInfo.putExtra("barClicked",marker.getId());
         startActivity(startBarInfo);
     }
 

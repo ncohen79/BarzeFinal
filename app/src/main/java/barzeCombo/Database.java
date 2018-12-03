@@ -14,6 +14,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Database {
@@ -336,6 +337,45 @@ public class Database {
                         tcs.setResult(ds.getValue(Bar.class).getLocation());
                     }
                 }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                tcs.setResult(null);
+            }
+        });
+        return tcs.getTask();
+    }
+    public Task<Bar[]> getAllBars() {
+        final TaskCompletionSource<Bar[]> tcs = new TaskCompletionSource<>();
+        mDatabaseReference.child("Bars").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                ArrayList<Bar> barList = new ArrayList<>();
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                    barList.add(ds.getValue(Bar.class));
+                }
+                tcs.setResult((Bar[]) barList.toArray());
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                tcs.setResult(null);
+            }
+        });
+        return tcs.getTask();
+    }
+
+    public Task<User[]> getAllUsers() {
+        final TaskCompletionSource<User[]> tcs = new TaskCompletionSource<>();
+        mDatabaseReference.child("Users").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                ArrayList<User> userList = new ArrayList<>();
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                    userList.add(ds.getValue(User.class));
+                }
+                tcs.setResult((User[]) userList.toArray());
             }
 
             @Override
