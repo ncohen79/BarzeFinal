@@ -18,6 +18,12 @@
         <item name="android:colorAccent">@color/header</item>
         <item name="android:textColorPrimaryDisableOnly">@color/header</item>
     </style>
+    <style name="AlertDialog" parent="Theme.AppCompat.Light">
+        <item name="android:background">@color/background</item>
+        <item name="actionBarItemBackground">@color/header</item>
+        <item name="android:textColor">@color/header</item>
+        <item name="android:fontFamily">@font/coustard</item>
+    </style>
     
 
 

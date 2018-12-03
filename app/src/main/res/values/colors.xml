@@ -6,4 +6,10 @@
     <color name="background">#FFD520</color>
     <color name="white">#C0ffffff</color>
     <color name="header">#E03A3E</color>
+    <color name="primary">#FF5722</color>
+    <color name="primary_dark">#E64A19</color>
+    <color name="accent">#ff3d00</color>
+    <color name="primary_text">#000000</color>
+    <color name="secondary_text">#727272</color>
+    <color name="edit_text">#202020</color>
 </resources>

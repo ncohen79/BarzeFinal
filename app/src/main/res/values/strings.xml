@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Barze</string>
+    <string name="load_data_string">Load Data</string>
+    <string name="map_list">Bar Selection</string>
 </resources>

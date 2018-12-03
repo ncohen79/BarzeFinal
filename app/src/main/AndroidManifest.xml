@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="barze.Login">
+    package="barzeCombo">
 
-
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -11,7 +11,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="barze.Login.Login" android:theme="@style/Theme.AppCompat.Light">
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version"/>
+        <activity android:name="barzeCombo.Login" android:theme="@style/Theme.AppCompat.Light">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,7 +26,18 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="barze.Login.SignUpActivity" android:theme="@style/Theme.AppCompat.Light">
+            android:name="barzeCombo.SignUpActivity" android:theme="@style/Theme.AppCompat.Light">
+        </activity>
+        <activity
+            android:name="barzeCombo.ViewListActivity" android:theme="@style/Theme.AppCompat.Light">
+        </activity>
+        <activity
+            android:name="barzeCombo.BarInfo" android:theme="@style/Theme.AppCompat.Light">
+        </activity>
+        <activity
+            android:name="barzeCombo.BarSelectActivity"
+            android:theme="@style/Theme.AppCompat.Light"
+            android:label="@string/map_list">
         </activity>
 
 
