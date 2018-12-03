@@ -9,12 +9,13 @@
 
     <TextView
         android:id="@+id/BarName"
-        android:layout_width="104dp"
-        android:layout_height="0dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="BarName"
+        android:textSize="30dp"
+        android:layout_centerHorizontal="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -50,7 +51,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Wait" />
 
-    <EditText
+    <TextView
         android:id="@+id/editText2"
         android:layout_width="67dp"
         android:layout_height="18dp"
@@ -58,7 +59,6 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="4dp"
         android:ems="10"
-        android:inputType="number"
         app:layout_constraintEnd_toStartOf="@+id/Minutes"
         app:layout_constraintHorizontal_bias="0.905"
         app:layout_constraintStart_toStartOf="parent"
@@ -110,7 +110,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Cover" />
 
-    <EditText
+    <TextView
         android:id="@+id/LowValue"
         android:layout_width="122dp"
         android:layout_height="16dp"
@@ -118,7 +118,6 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:ems="10"
-        android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.25"
         app:layout_constraintStart_toEndOf="@+id/Low"
@@ -158,14 +157,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ConfirmL" />
 
-    <EditText
+    <TextView
         android:id="@+id/HighNumber"
         android:layout_width="120dp"
         android:layout_height="17dp"
         android:layout_marginStart="56dp"
         android:layout_marginTop="16dp"
         android:ems="10"
-        android:inputType="number"
         app:layout_constraintStart_toEndOf="@+id/High"
         app:layout_constraintTop_toBottomOf="@+id/ConfirmL" />
 

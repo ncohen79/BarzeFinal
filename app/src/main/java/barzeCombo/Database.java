@@ -16,6 +16,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class Database {
     private FirebaseDatabase mFirebaseDatabase;
@@ -36,11 +37,10 @@ public class Database {
                             ds.getValue(User.class).getPassword().equals(password)) {
                         tcs.setResult(true);
                         return;
-                    }else{
-                        tcs.setResult(false);
-                        return;
                     }
                 }
+                tcs.setResult(false);
+                return;
             }
 
             @Override
@@ -327,8 +327,8 @@ public class Database {
         return tcs.getTask();
     }
 
-    public Task<float[]> getBarLocation(final String bar) {
-        final TaskCompletionSource<float[]> tcs = new TaskCompletionSource<>();
+    public Task<List<Float>> getBarLocation(final String bar) {
+        final TaskCompletionSource<List<Float>> tcs = new TaskCompletionSource<>();
         mDatabaseReference.child("Bars").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -346,8 +346,8 @@ public class Database {
         });
         return tcs.getTask();
     }
-    public Task<Bar[]> getAllBars() {
-        final TaskCompletionSource<Bar[]> tcs = new TaskCompletionSource<>();
+    public Task<List<Bar>> getAllBars() {
+        final TaskCompletionSource<List<Bar>> tcs = new TaskCompletionSource<>();
         mDatabaseReference.child("Bars").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -355,7 +355,7 @@ public class Database {
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
                     barList.add(ds.getValue(Bar.class));
                 }
-                tcs.setResult((Bar[]) barList.toArray());
+                tcs.setResult(barList);
             }
 
             @Override
@@ -365,9 +365,8 @@ public class Database {
         });
         return tcs.getTask();
     }
-
-    public Task<User[]> getAllUsers() {
-        final TaskCompletionSource<User[]> tcs = new TaskCompletionSource<>();
+    public Task<List<User>> getAllUsers() {
+        final TaskCompletionSource<List<User>> tcs = new TaskCompletionSource<>();
         mDatabaseReference.child("Users").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -375,7 +374,7 @@ public class Database {
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
                     userList.add(ds.getValue(User.class));
                 }
-                tcs.setResult((User[]) userList.toArray());
+                tcs.setResult(userList);
             }
 
             @Override

@@ -30,39 +30,51 @@ public class BarInfo extends AppCompatActivity {
         Button ChangeW = findViewById(R.id.ChangeW);
         Button ChangeH = findViewById(R.id.ChangeH);
         Button ChangeL = findViewById(R.id.ChangeL);
-        final EditText low = findViewById(R.id.LowValue);
-        final EditText high = findViewById(R.id.HighNumber);
+        final TextView low = findViewById(R.id.LowValue);
+        final TextView high = findViewById(R.id.HighNumber);
         final Database db = new Database();
 
         //BarName needs to be from database/from when user clisks the bar from listview
         //deals of the day(editText4) needs to be updated from the bar edit page
         //if the bar is open or closed needs to come from bar edit page as well
-        String currBar = getIntent().getStringExtra("barClicked");
+        final String currBar = getIntent().getStringExtra("barClicked");
+        BarName.setText(currBar);
         //ListView to be populated with deals from database
         Task<Integer> wait = db.getWaitTime(currBar);
         wait.addOnCompleteListener(new OnCompleteListener<Integer>() {
             @Override
             public void onComplete(@NonNull Task<Integer> task) {
-                Toast.makeText(getApplicationContext(), "wait time: "+ task.getResult().toString(), Toast.LENGTH_LONG).show();
-                Minutes.setText(task.getResult().toString());
+               Toast.makeText(getApplicationContext(), "wait time: "+task.getResult().toString(), Toast.LENGTH_LONG).show();
+                //Integer upperBound = task.getResult().intValue() + 10;
+                //Toast.makeText(getApplicationContext(), "wait time: "+upperBound, Toast.LENGTH_LONG).show();
+                //Minutes.setText(task.getResult().toString() + " - " + upperBound);
+
             }
         });
 
-        Task<Integer> lowC = db.getLowCover(currBar);
+      /* Task<Integer> lowC = db.getLowCover(currBar);
         lowC.addOnCompleteListener(new OnCompleteListener<Integer>() {
             @Override
             public void onComplete(@NonNull Task<Integer> task) {
-                low.setText(task.getResult().toString());
+                if(task.getResult() == 1000){
+                    low.setText("$  Rico");
+                }else{
+                    low.setText("$  "+task.getResult().toString());
+                }
             }
         });
 
-        Task<Integer> highC = db.getHighCover(currBar);
+         Task<Integer> highC = db.getHighCover(currBar);
         highC.addOnCompleteListener(new OnCompleteListener<Integer>() {
             @Override
             public void onComplete(@NonNull Task<Integer> task) {
-                high.setText(task.getResult().toString());
+                if(task.getResult() == 1000){
+                    high.setText("$  Rico");
+                }else{
+                    high.setText("$  "+task.getResult().toString());
+                }
             }
-        });
+        });*/
 
         ConfirmH.setOnClickListener(new OnClickListener() {
             @Override
@@ -100,21 +112,64 @@ public class BarInfo extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         switch (which) {
                             case 0:
-                                //Add $0.00 to the DB
+                                Task<Boolean> result0 = db.setHighCover(currBar,0);
+                                result0.addOnCompleteListener(new OnCompleteListener<Boolean>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Boolean> task) {
+                                        //low.setText("$  "+task.getResult().toString());
+
+                                    }
+                                });
                                 break;
                             case 1:
-                                //Add $5.00 to the DB
+                                Task<Boolean> result5 = db.setHighCover(currBar,5);
+                                result5.addOnCompleteListener(new OnCompleteListener<Boolean>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Boolean> task) {
+                                        //low.setText("$  "+task.getResult().toString());
+                                    }
+                                });
                                 break;
                             case 2:
-                                //Add $7.00 to DB
+                                Task<Boolean> result7 = db.setHighCover(currBar,7);
+                                result7.addOnCompleteListener(new OnCompleteListener<Boolean>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Boolean> task) {
+                                        //low.setText("$  "+task.getResult().toString());
+                                    }
+                                });
                                 break;
                             case 3:
-                                //Add $10.00 to DB
+                                Task<Boolean> result10 = db.setHighCover(currBar,10);
+                                result10.addOnCompleteListener(new OnCompleteListener<Boolean>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Boolean> task) {
+                                        //low.setText("$  "+task.getResult().toString());
+                                    }
+                                });
                                 break;
                             case 4:
-                                //Add Rico to DB
+                                Task<Boolean> resultRico = db.setHighCover(currBar,1000);
+                                resultRico.addOnCompleteListener(new OnCompleteListener<Boolean>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Boolean> task) {
+                                        //low.setText("$  "+task.getResult().toString());
+                                    }
+                                });
                                 break;
                         }
+                        Task<Integer> highC = db.getHighCover(currBar);
+                        highC.addOnCompleteListener(new OnCompleteListener<Integer>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Integer> task) {
+                                if(task.getResult() == 1000){
+                                    high.setText("$  Rico");
+                                }else{
+                                    high.setText("$  "+task.getResult().toString());
+                                }
+                            }
+                        });
+
                     }
                 });
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -149,21 +204,63 @@ public class BarInfo extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         switch (which) {
                             case 0:
-                                //Add $0.00 to the DB
+                                Task<Boolean> result0 = db.setLowCover(currBar,0);
+                                result0.addOnCompleteListener(new OnCompleteListener<Boolean>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Boolean> task) {
+                                        //low.setText("$  "+task.getResult().toString());
+                                    }
+                                });
                                 break;
                             case 1:
-                                //Add $5.00 to the DB
+                                Task<Boolean> result5 = db.setLowCover(currBar,5);
+                                result5.addOnCompleteListener(new OnCompleteListener<Boolean>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Boolean> task) {
+                                        //low.setText("$  "+task.getResult().toString());
+                                    }
+                                });
                                 break;
                             case 2:
-                                //Add $7.00 to DB
+                                Task<Boolean> result7 = db.setLowCover(currBar,7);
+                                result7.addOnCompleteListener(new OnCompleteListener<Boolean>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Boolean> task) {
+                                        //low.setText("$  "+task.getResult().toString());
+                                    }
+                                });
                                 break;
                             case 3:
-                                //Add $10.00 to DB
+                                Task<Boolean> result10 = db.setLowCover(currBar,10);
+                                result10.addOnCompleteListener(new OnCompleteListener<Boolean>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Boolean> task) {
+                                        //low.setText("$  "+task.getResult().toString());
+                                    }
+                                });
                                 break;
                             case 4:
-                                //Add Rico to DB
+                                Task<Boolean> resultRico = db.setLowCover(currBar,1000);
+                                resultRico.addOnCompleteListener(new OnCompleteListener<Boolean>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Boolean> task) {
+
+                                        //low.setText("$  "+task.getResult().toString());
+                                    }
+                                });
                                 break;
                         }
+                        Task<Integer> lowC = db.getLowCover(currBar);
+                        lowC.addOnCompleteListener(new OnCompleteListener<Integer>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Integer> task) {
+                                if(task.getResult() == 1000){
+                                    low.setText("$  Rico");
+                                }else{
+                                    low.setText("$  "+task.getResult().toString());
+                                }
+                            }
+                        });
                     }
                 });
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -195,19 +292,39 @@ public class BarInfo extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         switch (which) {
                             case 0:
-                                //Add No Wait to the DB
+                                Task<Boolean> result0 = db.setWaitTime(currBar,0);
+                                result0.addOnCompleteListener(new OnCompleteListener<Boolean>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Boolean> task) { }
+                                });
                                 break;
                             case 1:
-                                //Add 10-20 to the DB
+                                Task<Boolean> result10 = db.setWaitTime(currBar,10);
+                                result10.addOnCompleteListener(new OnCompleteListener<Boolean>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Boolean> task) { }
+                                });
                                 break;
                             case 2:
-                                //Add 20-30 to DB
+                                Task<Boolean> result20 = db.setWaitTime(currBar,20);
+                                result20.addOnCompleteListener(new OnCompleteListener<Boolean>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Boolean> task) { }
+                                });
                                 break;
                             case 3:
-                                //Add 30-40 to DB
+                                Task<Boolean> result30 = db.setWaitTime(currBar,30);
+                                result30.addOnCompleteListener(new OnCompleteListener<Boolean>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Boolean> task) { }
+                                });
                                 break;
                             case 4:
-                                //Add 40+ to DB
+                                Task<Boolean> result40 = db.setWaitTime(currBar,40);
+                                result40.addOnCompleteListener(new OnCompleteListener<Boolean>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Boolean> task) { }
+                                });
                                 break;
                         }
                     }

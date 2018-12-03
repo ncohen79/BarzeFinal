@@ -1,9 +1,12 @@
 package barzeCombo;
 
+import java.util.List;
+
 public class Bar {
+
     private String ID;
     private String name;
-    private float[] location;
+    private List<Float> location;
     private int waitTime;
     private int lowCover;
     private int highCover;
@@ -28,11 +31,11 @@ public class Bar {
         this.name = name;
     }
 
-    public float[] getLocation() {
+    public List<Float> getLocation() {
         return location;
     }
 
-    public void setLocation(float[] location) {
+    public void setLocation(List<Float> location) {
         this.location = location;
     }
 

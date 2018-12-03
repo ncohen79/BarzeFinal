@@ -53,13 +53,13 @@ public class Login extends Activity {
                 final EditText password = findViewById(R.id.password);
                 //password.getText();
 
-                Task<String> result = db.ownsBar(username.getText().toString());
+                Task<String> result = db.ownsBar(username.getText().toString().trim());
                 result.addOnCompleteListener(new OnCompleteListener<String>() {
                     @Override
                     public void onComplete(@NonNull Task<String> task) {
                        // user is logging in
                         if(task.getResult() == null){
-                            Task<Boolean> signIn = db.signIn(username.getText().toString(), password.getText().toString());
+                            Task<Boolean> signIn = db.signIn(username.getText().toString().trim(), password.getText().toString());
                             signIn.addOnCompleteListener(new OnCompleteListener<Boolean>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Boolean> taskSignIn) {
@@ -75,13 +75,11 @@ public class Login extends Activity {
                             });
 
                         }else{//bar is loggin in
-                            Toast.makeText(getApplicationContext(), "Bar user", Toast.LENGTH_LONG).show();
-                            Task<Boolean> signIn = db.signIn(username.getText().toString(), password.getText().toString());
+                            Task<Boolean> signIn = db.signIn(username.getText().toString().trim(), password.getText().toString());
                             signIn.addOnCompleteListener(new OnCompleteListener<Boolean>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Boolean> taskSignIn) {
                                     if(taskSignIn.getResult()){
-                                        Toast.makeText(getApplicationContext(), "loggin in bar account", Toast.LENGTH_LONG).show();
                                         Intent barPage = new Intent(Login.this,BarUserPage.class);
                                         startActivity(barPage);
                                     }else{
