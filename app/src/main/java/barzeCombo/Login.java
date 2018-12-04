@@ -80,7 +80,7 @@ public class Login extends Activity {
                                 @Override
                                 public void onComplete(@NonNull Task<Boolean> taskSignIn) {
                                     if(taskSignIn.getResult()){
-                                        Toast.makeText(getApplicationContext(), "loggin in bar account", Toast.LENGTH_LONG).show();
+                                        //Toast.makeText(getApplicationContext(), "loggin in bar account", Toast.LENGTH_LONG).show();
                                         Intent barPage = new Intent(Login.this,BarUserPage.class);
                                         startActivity(barPage);
                                     }else{
