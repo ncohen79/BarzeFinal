@@ -44,15 +44,13 @@ public class BarInfo extends AppCompatActivity {
         wait.addOnCompleteListener(new OnCompleteListener<Integer>() {
             @Override
             public void onComplete(@NonNull Task<Integer> task) {
-               Toast.makeText(getApplicationContext(), "wait time: "+task.getResult().toString(), Toast.LENGTH_LONG).show();
-                //Integer upperBound = task.getResult().intValue() + 10;
-                //Toast.makeText(getApplicationContext(), "wait time: "+upperBound, Toast.LENGTH_LONG).show();
-                //Minutes.setText(task.getResult().toString() + " - " + upperBound);
+                Integer upperBound = task.getResult().intValue() + 10;
+                Minutes.setText(task.getResult().toString() + " - " + upperBound);
 
             }
         });
 
-      /* Task<Integer> lowC = db.getLowCover(currBar);
+       Task<Integer> lowC = db.getLowCover(currBar);
         lowC.addOnCompleteListener(new OnCompleteListener<Integer>() {
             @Override
             public void onComplete(@NonNull Task<Integer> task) {
@@ -74,7 +72,7 @@ public class BarInfo extends AppCompatActivity {
                     high.setText("$  "+task.getResult().toString());
                 }
             }
-        });*/
+        });
 
         ConfirmH.setOnClickListener(new OnClickListener() {
             @Override
@@ -196,7 +194,7 @@ public class BarInfo extends AppCompatActivity {
                 //strings for radio buttons
                 final CharSequence[] items = {"$0.00", "$5.00", "$7.00", "$10.00", "Rico"};
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(BarInfo.this, R.style.AppTheme));
+                final AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(BarInfo.this, R.style.AppTheme));
 
                 builder.setTitle("Select A Cover Charge");
                 builder.setSingleChoiceItems(items, -1, new DialogInterface.OnClickListener() {
@@ -209,6 +207,7 @@ public class BarInfo extends AppCompatActivity {
                                     @Override
                                     public void onComplete(@NonNull Task<Boolean> task) {
                                         //low.setText("$  "+task.getResult().toString());
+                                        Toast.makeText(getApplicationContext(), "chose 0", Toast.LENGTH_LONG).show();
                                     }
                                 });
                                 break;
@@ -250,7 +249,7 @@ public class BarInfo extends AppCompatActivity {
                                 });
                                 break;
                         }
-                        Task<Integer> lowC = db.getLowCover(currBar);
+                       /* Task<Integer> lowC = db.getLowCover(currBar);
                         lowC.addOnCompleteListener(new OnCompleteListener<Integer>() {
                             @Override
                             public void onComplete(@NonNull Task<Integer> task) {
@@ -260,13 +259,27 @@ public class BarInfo extends AppCompatActivity {
                                     low.setText("$  "+task.getResult().toString());
                                 }
                             }
-                        });
+                        });*/
                     }
                 });
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         //user clicked OK. Put things into DB
+                        Toast.makeText(getApplicationContext(), "closing", Toast.LENGTH_LONG).show();
+                        dialog.dismiss();
+                        /*Task<Integer> lowC = db.getLowCover(currBar);
+                        lowC.addOnCompleteListener(new OnCompleteListener<Integer>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Integer> task) {
+                                if(task.getResult() == 1000){
+                                    low.setText("$  Rico");
+                                }else{
+                                    low.setText("$  "+task.getResult().toString());
+                                }
+                            }
+                        });*/
+
                     }
                 });
                 builder.setNegativeButton("Cancel", null);
