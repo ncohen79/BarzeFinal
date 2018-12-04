@@ -59,7 +59,6 @@ public class Login extends Activity {
                     public void onComplete(@NonNull Task<String> task) {
                        // user is logging in
                         if(task.getResult() == null){
-                            Toast.makeText(getApplicationContext(), "user", Toast.LENGTH_LONG).show();
                             Task<Boolean> signIn = db.signIn(username.getText().toString(), password.getText().toString());
                             signIn.addOnCompleteListener(new OnCompleteListener<Boolean>() {
                                 @Override
@@ -76,7 +75,6 @@ public class Login extends Activity {
                             });
 
                         }else{//bar is loggin in
-                            Toast.makeText(getApplicationContext(), "Bar user", Toast.LENGTH_LONG).show();
                             Task<Boolean> signIn = db.signIn(username.getText().toString(), password.getText().toString());
                             signIn.addOnCompleteListener(new OnCompleteListener<Boolean>() {
                                 @Override

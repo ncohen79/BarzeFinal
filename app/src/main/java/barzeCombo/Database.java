@@ -200,7 +200,12 @@ public class Database {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
                     if (ds.getValue(Bar.class).getName().equals(bar)) {
-                        tcs.setResult(ds.getValue(Bar.class).getWaitTime());
+                        if(tcs.getTask().isComplete()){
+                            return;
+                        }else{
+                            tcs.setResult(ds.getValue(Bar.class).getWaitTime());
+                        }
+
                     }
                 }
             }
@@ -245,7 +250,12 @@ public class Database {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
                     if (ds.getValue(Bar.class).getName().equals(bar)) {
-                        tcs.setResult(ds.getValue(Bar.class).getLowCover());
+                        if(tcs.getTask().isComplete()){
+                            return;
+                        }else{
+                            tcs.setResult(ds.getValue(Bar.class).getLowCover());
+                        }
+
                     }
                 }
             }
@@ -290,7 +300,11 @@ public class Database {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
                     if (ds.getValue(Bar.class).getName().equals(bar)) {
-                        tcs.setResult(ds.getValue(Bar.class).getHighCover());
+                        if(tcs.getTask().isComplete()){
+                            return;
+                        }else{
+                            tcs.setResult(ds.getValue(Bar.class).getHighCover());
+                        }
                     }
                 }
             }
@@ -351,9 +365,7 @@ public class Database {
     }
     public Task<List<Bar>> getAllBars() {
         final TaskCompletionSource<List<Bar>> tcs = new TaskCompletionSource<>();
-        if(tcs.getTask().isComplete()){
-            return tcs.getTask();
-        }
+
         mDatabaseReference.child("Bars").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -361,8 +373,12 @@ public class Database {
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
                     barList.add(ds.getValue(Bar.class));
                 }
+                if(tcs.getTask().isComplete()){
+                    return ;
+                }else{
+                    tcs.setResult(barList);
+                }
 
-                tcs.setResult(barList);
             }
 
             @Override

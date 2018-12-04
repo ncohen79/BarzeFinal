@@ -94,7 +94,7 @@ public class BarSelectActivity extends FragmentActivity implements RetainedFragm
                         List<Float> location = bar.getLocation();
                         Float lat = location.get(0);
                         Float lng = location.get(1);
-                        Log.i(TAG, "lat: " + lat);
+                        Log.i(TAG, "lat: " + bar.getWaitTime());
                         entries.add(new DataModel(bar_name, bar.getWaitTime(), bar.getLowCover(), lat, lng, null));
                         System.out.println("Loaded Data to entries");
                     }
@@ -109,7 +109,7 @@ public class BarSelectActivity extends FragmentActivity implements RetainedFragm
                                 .title(String.valueOf(m.getName()))
                                 .snippet("Wait: " + m.getWait() + " min.  Cover: " + m.getCover())
                                 .icon(BitmapDescriptorFactory
-                                        .defaultMarker(getMarkerColor(m.getWait()))));
+                                        .defaultMarker()));
                     }
                 }
 

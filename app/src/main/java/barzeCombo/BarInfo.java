@@ -137,8 +137,7 @@ public class BarInfo extends AppCompatActivity {
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(getApplicationContext(), "closing", Toast.LENGTH_LONG).show();
-                        dialog.dismiss();
+                        //dialog.dismiss();
                         Task<Integer> highC = db.getHighCover(currBar);
                         highC.addOnCompleteListener(new OnCompleteListener<Integer>() {
                             @Override
@@ -193,26 +192,14 @@ public class BarInfo extends AppCompatActivity {
                                 Task<Boolean> resultRico = db.setLowCover(currBar,1000);
                                 break;
                         }
-                       /* Task<Integer> lowC = db.getLowCover(currBar);
-                        lowC.addOnCompleteListener(new OnCompleteListener<Integer>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Integer> task) {
-                                if(task.getResult() == 1000){
-                                    low.setText("$  Rico");
-                                }else{
-                                    low.setText("$  "+task.getResult().toString());
-                                }
-                            }
-                        });*/
                     }
                 });
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         //user clicked OK. Put things into DB
-                        Toast.makeText(getApplicationContext(), "closing low", Toast.LENGTH_LONG).show();
                         dialog.dismiss();
-                        /*Task<Integer> lowC = db.getLowCover(currBar);
+                        Task<Integer> lowC = db.getLowCover(currBar);
                         lowC.addOnCompleteListener(new OnCompleteListener<Integer>() {
                             @Override
                             public void onComplete(@NonNull Task<Integer> task) {
@@ -222,7 +209,7 @@ public class BarInfo extends AppCompatActivity {
                                     low.setText("$  "+task.getResult().toString());
                                 }
                             }
-                        });*/
+                        });
 
                     }
                 });
@@ -270,8 +257,17 @@ public class BarInfo extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         //user clicked OK. Put things into DB
-                        Toast.makeText(getApplicationContext(), "closing wait", Toast.LENGTH_LONG).show();
                         dialog.dismiss();
+                        Task<Integer> wait = db.getWaitTime(currBar);
+                        wait.addOnCompleteListener(new OnCompleteListener<Integer>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Integer> task) {
+                                Integer upperBound = task.getResult().intValue() + 10;
+                                Minutes.setText(task.getResult().toString() + " - " + upperBound);
+
+                            }
+                        });
+
                     }
                 });
                 builder.setNegativeButton("Cancel", null);
