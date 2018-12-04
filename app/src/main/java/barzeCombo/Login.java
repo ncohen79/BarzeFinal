@@ -57,7 +57,7 @@ public class Login extends Activity {
                 result.addOnCompleteListener(new OnCompleteListener<String>() {
                     @Override
                     public void onComplete(@NonNull Task<String> task) {
-                        // user is logging in
+                       // user is logging in
                         if(task.getResult() == null){
                             Toast.makeText(getApplicationContext(), "user", Toast.LENGTH_LONG).show();
                             Task<Boolean> signIn = db.signIn(username.getText().toString(), password.getText().toString());
@@ -99,13 +99,13 @@ public class Login extends Activity {
 
 
                 //if(login is a bar account
-                //show justines code
+                    //show justines code
                 //else if(userLogin(username,password) == true){
                 //Intent listView = new Intent(Login.this,ViewListActivity.class);
 
                 //}
                 //else
-                //clear boxes and show toast message incorrect login
+                    //clear boxes and show toast message incorrect login
                 //Toast.makeText(getApplicationContext(), "Username/Password are incorrect", Toast.LENGTH_LONG).show();
             }
         });
@@ -122,13 +122,13 @@ public class Login extends Activity {
 
 
 
-        //get username and password
-        //check the database
+                //get username and password
+            //check the database
 
         //hyperlink the signup textEdit to the signup page
-        //textView.setOnClickListener()
+            //textView.setOnClickListener()
 
 
 
-    }
+}
 }

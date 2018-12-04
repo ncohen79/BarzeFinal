@@ -35,6 +35,9 @@ public class BarUserPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.baruser);
 
+        TextView bar = findViewById(R.id.nameView2);
+
+
 
         button = (Button) findViewById(R.id.buttonShowCustomDialog);
         currentDealsList = (ListView) findViewById(R.id.currentDealsList);

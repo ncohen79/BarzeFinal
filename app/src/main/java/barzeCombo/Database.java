@@ -329,6 +329,9 @@ public class Database {
 
     public Task<List<Float>> getBarLocation(final String bar) {
         final TaskCompletionSource<List<Float>> tcs = new TaskCompletionSource<>();
+        if(tcs.getTask().isComplete()){
+            return tcs.getTask();
+        }
         mDatabaseReference.child("Bars").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -348,6 +351,9 @@ public class Database {
     }
     public Task<List<Bar>> getAllBars() {
         final TaskCompletionSource<List<Bar>> tcs = new TaskCompletionSource<>();
+        if(tcs.getTask().isComplete()){
+            return tcs.getTask();
+        }
         mDatabaseReference.child("Bars").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -355,6 +361,7 @@ public class Database {
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
                     barList.add(ds.getValue(Bar.class));
                 }
+
                 tcs.setResult(barList);
             }
 
