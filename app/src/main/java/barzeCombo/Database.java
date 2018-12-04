@@ -35,8 +35,14 @@ public class Database {
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
                     if (ds.getValue(User.class).getUsername().equals(username) &&
                             ds.getValue(User.class).getPassword().equals(password)) {
-                        tcs.setResult(true);
-                        return;
+                        if(tcs.getTask().isComplete()){
+                            return;
+                        }else{
+                            tcs.setResult(true);
+                            return;
+
+                        }
+
                     }
                 }
                 tcs.setResult(false);
@@ -179,7 +185,12 @@ public class Database {
                         tcs.setResult(null);
                     } else if(ds.getValue(User.class).getUsername().equals(username)) {
                         // null if user does not own bar
-                        tcs.setResult(ds.getValue(User.class).getBar());
+                        if(tcs.getTask().isComplete()){
+                            return;
+                        }else{
+                            tcs.setResult(ds.getValue(User.class).getBar());
+                        }
+
                     }
                 }
             }
