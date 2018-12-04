@@ -5,13 +5,13 @@ import android.media.Image;
 
 public class DataModel {
     private String name;
-    private Double wait;
-    private String cover;
+    private int wait;
+    private int cover;
     private Bitmap pic;
-    private Double lat;
-    private Double lng;
+    private float lat;
+    private float lng;
 
-    public DataModel(String name, Double wait, String cover, Double lat, Double lng, Bitmap pic) {
+    public DataModel(String name, int wait, int cover, float lat, float lng, Bitmap pic) {
         this.name = name;
         this.wait = wait;
         this.cover = cover;
@@ -28,20 +28,22 @@ public class DataModel {
         this.name = name;
     }
 
-    public Double getWait() {
+    public int getWait() {
         return wait;
     }
-    public String getCover() {
+
+    public int getCover() {
         return cover;
     }
 
-    public Double getLat() {
+    public float getLat() {
         return lat;
     }
 
-    public Double getLng() {
+    public float getLng() {
         return lng;
     }
+
     public Bitmap getPic() {
         return pic;
     }

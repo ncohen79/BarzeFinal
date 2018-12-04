@@ -95,7 +95,7 @@ public class BarSelectActivity extends FragmentActivity implements RetainedFragm
                         Float lat = location.get(0);
                         Float lng = location.get(1);
                         Log.i(TAG, "lat: " + lat);
-                        //entries.add(new DataModel(bar_name, bar.getWaitTime(), bar.getLowCover(), lat, lng, null));
+                        entries.add(new DataModel(bar_name, bar.getWaitTime(), bar.getLowCover(), lat, lng, null));
                         System.out.println("Loaded Data to entries");
                     }
                     System.out.println("taskBar Success");
