@@ -20,14 +20,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/OpenClosed"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:text="OpenClosed"
-        app:layout_constraintTop_toBottomOf="@+id/BarName"
-        tools:layout_editor_absoluteX="154dp" />
 
     <TextView
         android:id="@+id/Wait"
@@ -40,7 +32,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/OpenClosed" />
+        app:layout_constraintTop_toBottomOf="@+id/BarName" />
 
     <TextView
         android:id="@+id/Minutes"

@@ -23,7 +23,6 @@ public class BarInfo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.barinformation);
         TextView BarName = findViewById(R.id.BarName);
-        TextView OpenClosed = findViewById(R.id.OpenClosed);
         final TextView Minutes = findViewById(R.id.editText2);
         Button ConfirmW = findViewById(R.id.ConfirmW);
         Button ConfirmH = findViewById(R.id.ConfirmH);
@@ -45,6 +44,7 @@ public class BarInfo extends AppCompatActivity {
         wait.addOnCompleteListener(new OnCompleteListener<Integer>() {
             @Override
             public void onComplete(@NonNull Task<Integer> task) {
+
                 Integer upperBound = task.getResult().intValue() + 10;
                 Minutes.setText(task.getResult().toString() + " - " + upperBound);
 
@@ -79,6 +79,7 @@ public class BarInfo extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //update Database with high cover value
+                onBackPressed();
             }
         });
 
@@ -86,6 +87,7 @@ public class BarInfo extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //confirm DB with Low value
+                onBackPressed();
             }
         });
 
@@ -93,6 +95,7 @@ public class BarInfo extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //confirm wait time in DB
+                onBackPressed();
             }
         });
 
